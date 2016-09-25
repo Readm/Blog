@@ -2,7 +2,7 @@
 layout:     post
 title:      "Linux下ASLR概述"
 subtitle:   "记录Linux下内存随机化的情况，以Ubuntu为例。"
-date:       2016-09-25 12:00:00
+date:       2016-09-09 12:00:00
 author:     "Readm"
 header-img: "img/post-bg-2015.jpg"
 tags:
