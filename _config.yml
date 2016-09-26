@@ -6,7 +6,7 @@ email: assasaki@163.com
 description: "Readm的博客, beta version."
 keyword: "Readm Blog Security"
 url: "http://readm.github.io"              # your host, for absolute URL
-baseurl: "/blog"         # for example, '/blog' if your blog hosted on 'host/blog'
+baseurl: "/readm.github.io"         # for example, '/blog' if your blog hosted on 'host/blog'
 
 timezone: CN
 
