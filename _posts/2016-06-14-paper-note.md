@@ -16,17 +16,17 @@ tags:
 
 ### The geometry of innocent flesh on the bone: return-into-libc without function calls (on the x86)
 
-** CCS2007 **
+**CCS2007**
 
-** tag: ROP **
+**tag: ROP**
 
 第一次提出ROP概念，之前貌似有ret-to-libc但没有正式论文？
 
 ### When good instructions go bad: generalizing return-oriented programming to RISC
 
-** CCS2008 **
+**CCS2008**
 
-** tag: ROP **
+**tag: ROP**
 
 ROP on RISC，介绍ROP的基本原理。
 
@@ -34,9 +34,9 @@ ROP on RISC，介绍ROP的基本原理。
 
 ### Return-oriented programming without returns
 
-** CCS2010 **
+**CCS2010**
 
-** tag： ROP **
+**tag： ROP**
 
 ROP的第二篇，在ARM和x86上实现了不使用Return指令的ROP攻击，主要思想是用与Retrun指令等价的指令序列来代替Return。
 
@@ -56,17 +56,17 @@ ROP的第二篇，在ARM和x86上实现了不使用Return指令的ROP攻击，�
 
 ### ROPdefender: a detection tool to defend against return-oriented programming attacks
 
-** ASIACCS2011 **
+**ASIACCS2011**
 
-** tag: ROP Pin **
+**tag: ROP Pin**
 
 在Pin上实现的，不修改硬件，不需要Side information，针对RET-based配件，支持多线程，效率为2x。主要工作就是使用了影子栈，对各种影子栈的异常情况作了处理。
 
 ### Smashing the Gadgets: Hindering Return-Oriented Programming Using In-place Code Randomization
 
-** S&P2012 **
+**S&P2012**
 
-** tag: ROP **
+**tag: ROP**
 
 原地替换指令来消除/随机化配件，总处理率大概在70+%，但依据文章给出的结果，足以使自动的payload生成失败（Q or Mona）。人工排配（针对性自动）仍有可能。
 
@@ -269,7 +269,7 @@ year: 2012
 
 Main: 
 
-+fast, reuseable and applicable to commodity hardware and software
++ fast, reuseable and applicable to commodity hardware and software
 + **use Pin framework**: a meta-tool in form of a shared library.
 + 1.14x~6.03x (large applications like Apache, MySQL: 1.25x~4.83x)
 
