@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 论文简记
-subtitle: 论文简记，规范过的部分。
+subtitle: 论文简记，规范过的部分。(写笔记真是拖慢看论文速度……
 date: 2016-06-14T12:00:00.000Z
 author: Readm
 header-img: img/post-bg-2015.jpg
@@ -12,46 +12,69 @@ tags:
 
 # 论文简记
 
-ROP三连：
+## ROP三连：
 
-## The geometry of innocent flesh on the bone: return-into-libc without function calls (on the x86)
+### The geometry of innocent flesh on the bone: return-into-libc without function calls (on the x86)
 
 ** CCS2007 **
+
 ** tag: ROP **
 
 第一次提出ROP概念，之前貌似有ret-to-libc但没有正式论文？
 
-## When good instructions go bad: generalizing return-oriented programming to RISC
+### When good instructions go bad: generalizing return-oriented programming to RISC
 
 ** CCS2008 **
+
 ** tag: ROP **
 
 ROP on RISC，介绍ROP的基本原理。
 
 *Note：在这之前就已经有Stack-Smashing Protection技术和ASLR技术了。*
 
-## Return-oriented programming without returns
+### Return-oriented programming without returns
 
 ** CCS2010 **
+
 ** tag： ROP **
 
 ROP的第二篇，在ARM和x86上实现了不使用Return指令的ROP攻击，主要思想是用与Retrun指令等价的指令序列来代替Return。
 
 *Note：文章开头总结了当时的部分防御方法。*
 
-ROP防御
+## ROP防御
 
-## ROPdefender: a detection tool to defend against return-oriented programming attacks
+防御的方式总共有如下几种思路（互有交叉）：
+
++ Randomization
++ Function Epilogue（prologue）
++ CFI
++ Return 计数
++ Taint Tracking
++ Shadow Stacks
++ JIT 主要限制了RET指令的具体目标等。
+
+### ROPdefender: a detection tool to defend against return-oriented programming attacks
 
 ** ASIACCS2011 **
+
 ** tag: ROP Pin **
 
-在Pin上实现的，不修改硬件，不需要Side information，针对RET-based配件。
+在Pin上实现的，不修改硬件，不需要Side information，针对RET-based配件，支持多线程，效率为2x。主要工作就是使用了影子栈，对各种影子栈的异常情况作了处理。
 
+### Smashing the Gadgets: Hindering Return-Oriented Programming Using In-place Code Randomization
 
-# 污迹追踪与DFI 简记
+** S&P2012 **
 
-# Common
+** tag: ROP **
+
+原地替换指令来消除/随机化配件，总处理率大概在70+%，但依据文章给出的结果，足以使自动的payload生成失败（Q or Mona）。人工排配（针对性自动）仍有可能。
+
+---
+
+## 污迹追踪与DFI 简记
+
+## Common
 
 + Frames：
     + Temu, TaintCheck
@@ -71,48 +94,48 @@ ROP防御
 
 ---
 
-# Secure Program Execution via Dynamic Information Flow Tracking
+### Secure Program Execution via Dynamic Information Flow Tracking
 
 year: 2004
 
 Information Flow Tracking
 
-### Implementation of policy:
+#### Implementation of policy:
 
 + PCR->progration rules
 + TCR->trap rules
 + Trap->software check
 
-### Implementation on chip:
+#### Implementation on chip:
 
 see fig, nothing novel
 
-### Efficient tag management:
+#### Efficient tag management:
 
 Page individual.
 
-### Simulation:
+#### Simulation:
 
 Correct: sim-fast SPEC2000
 Efficiency: Bochs open-source x86 emulator
 
-### Init Tag:
+#### Init Tag:
 
 hard drive: tagged
 I/O, network: spurious
 ??? When boot: Only BIOS, ROM is authentic
 
-### overhead:
+#### overhead:
 
 low: time & space <5%
 
-### false positive and false negative
+#### false positive and false negative
 
 none(20attack and simple linux bash commands: ls etc.)
 
 ---
 
-# A Critical Review of Dynamic Taint Analysis and Forward Symbolic Execution
+### A Critical Review of Dynamic Taint Analysis and Forward Symbolic Execution
 
 year: 2012
 
@@ -123,11 +146,11 @@ a note for *All you wanted to know about dynamics taint analysis and forward sym
 
 ---
 
-# FlexiTaint: A Programmable Accelerator for Dynamic Taint Propagation
+### FlexiTaint: A Programmable Accelerator for Dynamic Taint Propagation
 
 year: 2008
 
-### main idea: 
+#### main idea: 
 
 + Programmed at run time to efficiently follow a desired tainting policy.
 + No hardward change when policy change.
@@ -142,7 +165,7 @@ year: 2008
 |01|If all source taints are zeros, destination taint is zero. Otherwise, like 00 (use TPC).|
 |10|If only one non-zero source taint, copy it to destination taint. Otherwise, like 01.|
 
-### overhead: 
+#### overhead: 
 
 + ave:1% worst: 8.4% for SPEC2000  
 + ave:3.7% worst: 8.7% for Splash-2
@@ -154,13 +177,13 @@ year: 2008
 
 ---
 
-# Pointless Tainting? Evaluating the Practicality of Pointer Tainting
+### Pointless Tainting? Evaluating the Practicality of Pointer Tainting
 
 year: 2009
 
-### A review of point taint
+#### A review of point taint
 
-### history
+#### history
 
 + basic tainting: 
     + only for control divert attack
@@ -172,13 +195,13 @@ year: 2009
         + if p is tainted, any dereference of p taints the destination
         
         
-### Pointer tainting is very popular because:
+#### Pointer tainting is very popular because:
 
 + it can be applied to unmodified software without recompilation
 + according to its advocates, it incurs hardly (if any) false positives
 + it is assumed to be one of the only (if not the only) reliable techniques capable of detecting both control-diverting and non-control-diverting attacks without requiring recompilation.
 
-### minor issues:
+#### minor issues:
 
 + discuss: *Deconstructing hardware architectures for security* 2006
 + address: *Realworld buffer overflow protection for userspace and kernelspace* 2008
@@ -204,35 +227,35 @@ Basic taint analysis has been successfully applied in numerous systems [Crandall
 
 ---
 
-# Eudaemon: Involuntary and On-Demand Emulation Against Zero-Day Exploits
+### Eudaemon: Involuntary and On-Demand Emulation Against Zero-Day Exploits
 
 year: 2008
 
-### Aim: full-time deployment(what I want)
+#### Aim: full-time deployment(what I want)
 
-### main idea:
+#### main idea:
 
 + **attach/detach at runtime**
 + use a DLL/DSO
 + based on *Argos*
 + strange shortcoming: place in the user space.
 
-### Mentioned System:
+#### Mentioned System:
 
 + Argos
 + Minos
 + Vigilante
 + TaintCheck
 
-### Speed up to full-time
+#### Speed up to full-time
 
 + [4],use Qemu[6]
 
-### Useful information:
+#### Useful information:
 
 + the syscall that need to consider is in the section 4.1.1, which I may implement in the same way.
 
-### details:
+#### details:
 
 + handle signals aswell
 
@@ -240,7 +263,7 @@ year: 2008
 
 ---
 
-# libdft: Practical Dynamic Data Flow Tracking for Commodity Systems
+### libdft: Practical Dynamic Data Flow Tracking for Commodity Systems
 
 year: 2012
 
@@ -271,7 +294,7 @@ nothing else novel
 
 ---
 
-# Securing software by enforcing data-flow integrity(DFI)
+### Securing software by enforcing data-flow integrity(DFI)
 
 year: 2006
 
@@ -298,7 +321,7 @@ table (RDT) that records the identifier of the last instruction to write to each
 
 ---
 
-# HDFI: Hardware-Assisted Data-flow Isolation
+### HDFI: Hardware-Assisted Data-flow Isolation
 
 year: 2016 S&P
 
@@ -326,7 +349,7 @@ Physical memory tag and data are separated. Between cache and physical memory, t
 
 ---
 
-## PASS
+### PASS
 
 + LIFT: software base
 + TaintDroid：For Private Information
