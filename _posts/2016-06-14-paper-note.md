@@ -70,6 +70,12 @@ ROP的第二篇，在ARM和x86上实现了不使用Return指令的ROP攻击，�
 
 原地替换指令来消除/随机化配件，总处理率大概在70+%，但依据文章给出的结果，足以使自动的payload生成失败（Q or Mona）。人工排配（针对性自动）仍有可能。
 
+### Cryptographically Enforced Control Flow Integrity
+
+**arxiv**
+
+密码学加密了代码指针和返回地址。更改了ABI。
+
 ---
 
 ## 污迹追踪与DFI 简记
