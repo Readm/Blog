@@ -18,7 +18,7 @@ tags:
 
 Today we start with a simple part of Rocket Core: bypass.
 
-Bypass in rocket core is faily simple, since the Rocket is an in-order pipelined core. The bypass module only detect bypass opportunites and bypass the correct values befor the ex stage.
+Bypass in rocket core is faily simple, since the Rocket is an in-order pipelined core. The bypass module only detect bypass opportunites and bypass the correct values befor the execute stage.
 
 ## If not bypass
 
@@ -54,7 +54,7 @@ How to know whether there are bypass opportunites in the pipeline or not? The an
 
 For example, the 2nd item means: when `ex_reg_valid && ex_ctrl.wxd`, this source can be used in bypass, the register is indicated by `ex_waddr`, and in the next cycyle, the value is in `mem_reg_wdata`.
 
-The first item in `bypass_sources` is quiet easy: Always(when true), the r0 can be bypassed as 0.
+The first item in `bypass_sources` is quiet easy: Always(when true), the x0 can be bypassed as 0.
 
 In `id_bypass_src`, each read addr in id_raddr will decide which bypass source to use by comparing the `raddr` and `waddr`. 
 
@@ -69,8 +69,8 @@ First, for each read addr, `do_bypass` decide whether the register can do bypass
     val bypass_src = PriorityEncoder(id_bypass_src(i))
 ```
 
-In addition, the origin value in `id_rs` is devided into two parts: `ex_reg_rs_msb` and `ex_reg_rs_lsb`. And:
-+ When do not bypass: correct values are `Cat(ex_reg_rs_msb, ex_reg_rs_lsb)`, which is consistent with `id_rs`;
+In addition, each origin value in `id_rs` is devided into two parts: `ex_reg_rs_msb` and `ex_reg_rs_lsb`. And:
++ When do not bypass: correct values are `Cat(ex_reg_rs_msb, ex_reg_rs_lsb)`, which is consistent with it in `id_rs`;
 + When do bypass: correct values are selected by `ex_reg_rs_lsb` from `bypass_mux`, which is a list of the last arguments of each item in `bypass_sources`. In this case `ex_reg_rs_msb` is useless.
 
 ## Finally
