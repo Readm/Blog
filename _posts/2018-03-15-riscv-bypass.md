@@ -12,7 +12,7 @@ tags:
     - Chisel
 ---
 
-+ 为了可能的参与[rocket-chip-read](https://github.com/cnrv/rocket-chip-read)，之后的文章尽量直接使用英文，减少工作量。
+*Note:为了可能的参与[rocket-chip-read](https://github.com/cnrv/rocket-chip-read)，之后的文章尽量直接使用英文，减少工作量。*
 
 # Bypass in Rocket Core
 
