@@ -2,7 +2,7 @@
 layout:     post
 title:      "如何在编译器中保留特定寄存器"
 subtitle:   "在LLVM中保留一个特殊寄存器作为专用寄存器，需要哪些改动。"
-date:       2018-03-15 12:00:00
+date:       2018-04-11 12:00:00
 author:     "Readm"
 header-img: "img/tech.jpg"
 tags:
