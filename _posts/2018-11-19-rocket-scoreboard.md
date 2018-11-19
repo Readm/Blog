@@ -2,7 +2,7 @@
 layout:     post
 title:      "Rocket Core源代码笔记——Score Board"
 subtitle:   "Rocket Core的计分板"
-date:       2018-03-15 12:00:00
+date:       2018-11-19 12:00:00
 author:     "Readm"
 header-img: "img/riscv.jpg"
 tags:
