@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Rocket Core源代码笔记——Score Board"
+title:      "Rocket Core源代码笔记——Scoreboard"
 subtitle:   "Rocket Core的计分板"
 date:       2018-11-19 12:00:00
 author:     "Readm"
@@ -12,9 +12,9 @@ tags:
     - Chisel
 ---
 
-# ScoreBoard in Rocket Core
+# Scoreboard in Rocket Core
 
-Today we talk about the [Score Board](https://en.wikipedia.org/wiki/Scoreboarding) in Rocket Core. In fact, the Score Board in Rocke Core is very simple: 32 bit to record the status of each register. The class Scoreboard defined a class of this simple score board and the two instance is `sboard` for normal registers and `fp_sboard` for float point registers.
+Today we talk about the [Scoreboard](https://en.wikipedia.org/wiki/Scoreboarding) in Rocket Core. In fact, the Score Board in Rocke Core is very simple: 32 bit to record the status of each register. The class Scoreboard defined a class of this simple score board and the two instance is `sboard` for normal registers and `fp_sboard` for float point registers.
 
 ## How does it work?
 
